@@ -2,14 +2,18 @@ console.log("content.js");
 
 chrome.runtime.onMessage.addListener(gotMessage);
 
-function gotMessage(message, id, sendResponse) {
-    let paragraphs = Array.from(document.getElementsByTagName("p"));
-
-    paragraphs.forEach(element => {
-        if (message) {
-            element.style["background-color"] = "red";
-        } else {
-            element.style["background-color"] = "white";
+function gotMessage(isExtensionOn, id, sendResponse) {
+    function getSelectionText() {
+        var text = "";
+        if (window.getSelection) {
+            text = window.getSelection().toString();
         }
-    });
+        console.log(text);
+        return text;
+    }
+
+    if (isExtensionOn) {
+        document.onmouseup = getSelectionText;
+        if (!document.all) document.captureEvents(event.mouseup);
+    }
 }

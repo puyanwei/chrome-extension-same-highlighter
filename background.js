@@ -1,9 +1,9 @@
 console.log("background.js");
 
-let isRunning = false;
+let isExtensionOn = false;
 
 chrome.browserAction.onClicked.addListener(tab => {
-    isRunning = !isRunning;
-    console.log(tab, isRunning);
-    chrome.tabs.sendMessage(tab.id, isRunning);
+    isExtensionOn = !isExtensionOn;
+    console.log(tab, isExtensionOn);
+    chrome.tabs.sendMessage(tab.id, isExtensionOn);
 });
