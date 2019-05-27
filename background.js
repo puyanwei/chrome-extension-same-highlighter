@@ -1,10 +1,9 @@
 console.log("background.js");
 
-chrome.browserAction.onClicked.addListener(buttonClicked);
+let isRunning = false;
 
-function buttonClicked(tab) {
-    console.log(tab);
-    let msg = { text: "hello" };
-
-    chrome.tabs.sendMessage(tab.id, msg);
-}
+chrome.browserAction.onClicked.addListener(tab => {
+    isRunning = !isRunning;
+    console.log(tab, isRunning);
+    chrome.tabs.sendMessage(tab.id, isRunning);
+});
