@@ -1,8 +1,15 @@
-console.log("Chrome extension is running!");
+console.log("content.js");
 
-const receiver = (request, sender, sendResponse) => {
-    console.log("this is content.js");
-};
+let paragraphs = Array.from(document.getElementsByTagName("p"));
 
-// Listen for messages
-chrome.runtime.onMessage.addListener(receiver);
+console.log(paragraphs);
+
+paragraphs.forEach(element => {
+    element.style["background-color"] = "red";
+});
+
+chrome.runtime.onMessage.addListener(gotMessage);
+
+function gotMessage(message, sender, sendResponse) {
+    console.log(message.txt);
+}

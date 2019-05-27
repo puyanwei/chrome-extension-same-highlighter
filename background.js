@@ -1,9 +1,11 @@
-// Add a listener for the browser action
-chrome.browserAction.onClicked.addListener(buttonClicked);
+console.log("background.js");
 
+// Listen for messages
+chrome.runtime.onMessage.addListener(buttonClicked);
+
+// A message is received
 function buttonClicked(tab) {
-    var msg = {
-        message: "user clicked!"
-    };
+    let msg = { text: "hello" };
+
     chrome.tabs.sendMessage(tab.id, msg);
 }
