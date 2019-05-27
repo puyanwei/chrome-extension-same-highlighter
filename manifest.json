@@ -3,16 +3,17 @@
     "name": "Same Word Highlighter",
     "version": "1.0",
     "description": "Highlights all the same words on the page as what is highlighted on",
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["matches.js"]
-        }
-    ],
-    "page_action": {
+    "browser_action": {
         "default_icon": "icon.jpg"
     },
     "background": {
         "scripts": ["background.js"]
-    }
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"]
+        }
+    ],
+    "permissions": ["activeTab"]
 }
